@@ -156,6 +156,7 @@ const StaffDashboard = () => {
           <div className={styles.formContainer}>
             <h2>Capture Final Photo</h2>
             <p>Please ensure the image is clear and well-lit.</p>
+            {message && <div className={`${styles.message} ${isError ? styles.error : styles.success}`}>{message}</div>}
             <div style={{ margin: '1rem 0' }}>
               {!capturedImgSrc ? (
                 <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" width="100%" videoConstraints={videoConstraints} />
