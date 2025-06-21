@@ -19,6 +19,13 @@ const AdminDashboard = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    const userString = localStorage.getItem('user');
+    const user = userString ? JSON.parse(userString) : null;
+
+    if (user?.user?.role === 'Staff') {
+      navigate('/staff');
+    }
+    
     fetchElections();
   }, []);
 

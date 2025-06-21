@@ -21,7 +21,7 @@ const app = express();
 const server = http.createServer(app);
 
 const corsOptions = {
-  origin: "https://ashy-moss-003a9a81e.2.azurestaticapps.net",
+  origin: "https://delightful-smoke-0f598391e.1.azurestaticapps.net",
   optionsSuccessStatus: 200
 };
 
@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 
 const io = new Server(server, {
   cors: {
-    origin: "https://ashy-moss-003a9a81e.2.azurestaticapps.net",
+    origin: "https://delightful-smoke-0f598391e.1.azurestaticapps.net",
     methods: ["GET", "POST"]
   }
 });

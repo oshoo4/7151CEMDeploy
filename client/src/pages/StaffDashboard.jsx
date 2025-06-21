@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import voterService from '../services/voterService.js';
@@ -24,6 +24,15 @@ const StaffDashboard = () => {
 
   const webcamRef = useRef(null);
   const capture = useCallback(() => setCapturedImgSrc(webcamRef.current.getScreenshot()), [webcamRef]);
+
+  useEffect(() => {
+    const userString = localStorage.getItem('user');
+    const user = userString ? JSON.parse(userString) : null;
+
+    if (user?.user?.role === 'Admin') {
+      navigate('/admin');
+    }
+  }, []);
   
   const resetAll = () => {
     setWorkflow('menu');
@@ -121,7 +130,7 @@ const StaffDashboard = () => {
       }
     } catch (error) { 
       handle403Error(error, navigate);
-      
+
       setMessage(error.response?.data?.error || 'Verification failed.'); setIsError(true); 
     }
   };
